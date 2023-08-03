@@ -15,7 +15,7 @@ To learn k8s, please follow learn guide at [akn/](https://github.com/ArunNadda/v
 To provision the cluster, execute the following commands.
 
 ```shell
-git clone https://github.com/ArunNadda/vagrant-k8s.git
+git clone https://github.com/ram-parameswaran/vagrant-k8s.git
 cd vagrant-k8s
 vagrant up
 ```
