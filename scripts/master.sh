@@ -1,6 +1,6 @@
 #! /bin/bash
 
-MASTER_IP="10.0.0.10"
+MASTER_IP=$(ip address show $NETWORK_INTERFACE | grep eth0 | awk '{print $2}' | egrep -o '([0-9]+\.){3}[0-9]+')
 NODENAME=$(hostname -s)
 POD_CIDR="192.168.0.0/16"
 
@@ -36,7 +36,7 @@ kubeadm token create --print-join-command > /vagrant/configs/join.sh
 
 # Install Calico Network Plugin
 
-curl https://docs.projectcalico.org/manifests/calico.yaml -O
+wget https://docs.projectcalico.org/manifests/calico.yaml
 
 kubectl apply -f calico.yaml
 

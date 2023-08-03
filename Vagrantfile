@@ -7,10 +7,12 @@ Vagrant.configure("2") do |config|
     SHELL
     
     config.vm.define "master" do |master|
-      master.vm.box = "bento/ubuntu-18.04"
+      master.vm.box = "starboard/ubuntu-arm64-20.04.5"
+      master.vm.box_version = "20221120.20.40.0"
       master.vm.hostname = "master-node"
       master.vm.network "private_network", ip: "10.0.0.10"
       master.vm.provider "virtualbox" do |vb|
+          vb.linked_clone = false
           vb.memory = 2048
           vb.cpus = 2
       end
@@ -21,10 +23,12 @@ Vagrant.configure("2") do |config|
     (1..2).each do |i|
   
     config.vm.define "node0#{i}" do |node|
-      node.vm.box = "bento/ubuntu-18.04"
+      node.vm.box = "starboard/ubuntu-arm64-20.04.5"
+      node.vm.box_version = "20221120.20.40.0"
       node.vm.hostname = "worker-node0#{i}"
       node.vm.network "private_network", ip: "10.0.0.1#{i}"
       node.vm.provider "virtualbox" do |vb|
+          vb.linked_clone = false
           vb.memory = 1024
           vb.cpus = 1
       end
